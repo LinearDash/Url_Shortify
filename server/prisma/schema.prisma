@@ -12,3 +12,11 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Url {
+  id        String   @id @default(cuid())
+  originalUrl String
+  shortCode  String   @unique
+
+  createdAt  DateTime @default(now())
+}
