@@ -10,7 +10,7 @@ export const createShortUrl = async (req: Request, res: Response) => {
         if (!validation.success) {
             res.status(400).json({ 
                 message: "Validation error", 
-                errors: validation.error 
+                errors: validation.error.issues 
             });
             return;
         }
