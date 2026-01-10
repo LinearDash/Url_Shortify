@@ -46,3 +46,27 @@ export const createShortUrl = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Internal server error" });
     }
 }
+
+export const getOriginalUrl = async (req: Request, res: Response) => {
+    try {
+        const { shortCode } = req.params;
+
+        const urlRecord = await prisma.url.findUnique({
+            where: { shortCode }
+        });
+
+        if (!urlRecord) {
+            res.status(404).json({ message: "Short URL not found" });
+            return;
+        }
+
+        res.status(200).json({
+            message: "Original URL retrieved successfully",
+            data: urlRecord.originalUrl,
+        });
+
+    } catch (error) {
+        console.error("Error retrieving original URL:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
