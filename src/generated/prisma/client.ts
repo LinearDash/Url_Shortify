@@ -44,3 +44,8 @@ export { Prisma }
  * 
  */
 export type Url = Prisma.UrlModel
+/**
+ * Model Click
+ * 
+ */
+export type Click = Prisma.ClickModel

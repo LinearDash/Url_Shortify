@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Url: 'Url'
+  Url: 'Url',
+  Click: 'Click'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "url"
+    modelProps: "url" | "click"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Click: {
+      payload: Prisma.$ClickPayload<ExtArgs>
+      fields: Prisma.ClickFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClickFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClickFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        findFirst: {
+          args: Prisma.ClickFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClickFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        findMany: {
+          args: Prisma.ClickFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>[]
+        }
+        create: {
+          args: Prisma.ClickCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        createMany: {
+          args: Prisma.ClickCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClickCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>[]
+        }
+        delete: {
+          args: Prisma.ClickDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        update: {
+          args: Prisma.ClickUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClickDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClickUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClickUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClickUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClickPayload>
+        }
+        aggregate: {
+          args: Prisma.ClickAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClick>
+        }
+        groupBy: {
+          args: Prisma.ClickGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClickGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClickCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClickCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -525,6 +600,18 @@ export const UrlScalarFieldEnum = {
 } as const
 
 export type UrlScalarFieldEnum = (typeof UrlScalarFieldEnum)[keyof typeof UrlScalarFieldEnum]
+
+
+export const ClickScalarFieldEnum = {
+  id: 'id',
+  urlId: 'urlId',
+  ip: 'ip',
+  userAgent: 'userAgent',
+  conuntry: 'conuntry',
+  clickedAt: 'clickedAt'
+} as const
+
+export type ClickScalarFieldEnum = (typeof ClickScalarFieldEnum)[keyof typeof ClickScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -686,6 +773,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   url?: Prisma.UrlOmit
+  click?: Prisma.ClickOmit
 }
 
 /* Types for Logging */

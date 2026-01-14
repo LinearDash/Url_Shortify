@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Url: 'Url'
+  Url: 'Url',
+  Click: 'Click'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,6 +79,18 @@ export const UrlScalarFieldEnum = {
 } as const
 
 export type UrlScalarFieldEnum = (typeof UrlScalarFieldEnum)[keyof typeof UrlScalarFieldEnum]
+
+
+export const ClickScalarFieldEnum = {
+  id: 'id',
+  urlId: 'urlId',
+  ip: 'ip',
+  userAgent: 'userAgent',
+  conuntry: 'conuntry',
+  clickedAt: 'clickedAt'
+} as const
+
+export type ClickScalarFieldEnum = (typeof ClickScalarFieldEnum)[keyof typeof ClickScalarFieldEnum]
 
 
 export const SortOrder = {
