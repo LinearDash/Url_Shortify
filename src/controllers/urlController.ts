@@ -47,7 +47,7 @@ export const createShortUrl = async (req: Request, res: Response) => {
     }
 }
 
-export const getOriginalUrl = async (req: Request, res: Response) => {
+export const getUrlDetails = async (req: Request, res: Response) => {
     try {
         const { shortCode } = req.params;
 
@@ -62,11 +62,30 @@ export const getOriginalUrl = async (req: Request, res: Response) => {
 
         res.status(200).json({
             message: "Original URL retrieved successfully",
-            data: urlRecord.originalUrl,
+            data: urlRecord,
         });
 
     } catch (error) {
         console.error("Error retrieving original URL:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export const getAllUrls = async (req: Request, res: Response) => {
+    try {
+        const urls = await prisma.url.findMany();
+
+        if (urls.length === 0) {
+            res.status(404).json({ message: "No URLs found" });
+            return;
+        }
+
+        res.status(200).json({
+            message: "URLs retrieved successfully",
+            data: urls,
+        });
+    } catch (error) {
+        console.error("Error retrieving URLs:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
